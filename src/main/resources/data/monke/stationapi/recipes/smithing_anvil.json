@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "PCP",
+    "SPS"
+  ],
+  "key": {
+    "S": {
+      "item": "monke:smithing_stone"
+    },
+    "C": {
+      "item": "minecraft:crafting_table"
+    },
+    "P": {
+      "item": "minecraft:oak_planks"
+    }
+  },
+  "result": {
+    "item": "monke:smithing_anvil",
+    "count": 1
+  }
+}
