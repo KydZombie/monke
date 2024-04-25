@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "monke:item/pickaxe/handle",
+    "layer1": "monke:item/pickaxe/head"
+  }
+}

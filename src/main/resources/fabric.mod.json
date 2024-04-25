@@ -1,41 +1,43 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "monke",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Monke",
+  "description": "A tool mod roughly inspired by Tinker's Construct and TerraFirmaCraft.",
   "authors": [
-    "Me!"
+    "KydZombie"
   ],
   "contact": {
     "homepage": "https://glass-launcher.net/",
     "sources": "https://github.com/calmilamsy/stationapi-example-mod"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/examplemod/icon.png",
+  "license": "MIT",
+  "icon": "assets/monke/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "stationapi:event_bus": [
-      "net.glasslauncher.example.events.init.AchievementListener",
-      "net.glasslauncher.example.events.init.BlockListener",
-      "net.glasslauncher.example.events.init.ItemListener",
-      "net.glasslauncher.example.events.init.PlayerHandlerListener",
-      "net.glasslauncher.example.events.init.RecipeListener"
+      "io.github.kydzombie.monke.Monke",
+      "io.github.kydzombie.monke.event.init.MonkeBlocks",
+      "io.github.kydzombie.monke.event.init.MonkeCrafting",
+      "io.github.kydzombie.monke.event.init.MonkeItems",
+      "io.github.kydzombie.monke.event.init.MonkeMaterials"
     ],
     "stationapi:event_bus_client": [
-      "net.glasslauncher.example.events.init.KeyBindingListener",
-      "net.glasslauncher.example.events.init.TextureListener",
-      "net.glasslauncher.example.events.ingame.KeyPressedListener"
+      "io.github.kydzombie.monke.event.init.client.MonkeToolRendering",
+      "io.github.kydzombie.monke.event.init.client.MonkeGui",
+      "io.github.kydzombie.monke.compat.MonkeHMICompat"
     ],
     "stationapi:event_bus_server": [
-      "net.glasslauncher.example.events.init.ServerInitListener"
+    ],
+    "hmifabric:item_list_refresh": [
+      "io.github.kydzombie.monke.compat.MonkeHMICompat"
     ]
   },
   "mixins": [
-    "examplemod.mixins.json"
+    "monke.mixins.json"
   ],
 
   "depends": {

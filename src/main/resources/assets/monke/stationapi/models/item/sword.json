@@ -1,0 +1,8 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "monke:item/sword/handle",
+    "layer1": "monke:item/sword/blade",
+    "layer2": "monke:item/sword/guard"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "monke:item/generic/tool_handle"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "monke:block/smithing_anvil_bottom",
+    "east": "monke:block/smithing_anvil_side",
+    "north": "monke:block/smithing_anvil_front",
+    "particle": "monke:block/smithing_anvil_front",
+    "south": "monke:block/smithing_anvil_front",
+    "up": "monke:block/smithing_anvil_top",
+    "west": "monke:block/smithing_anvil_side"
+  }
+}
