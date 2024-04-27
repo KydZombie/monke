@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 
 public class LooseSmithingStoneBlockEntity extends BlockEntity {
-    private static final int SETTING_TIME = 4 * 20;
+    private static final int SETTING_TIME = 2 * 60 * 20; // 2 minutes
     private int time_until_set = 0;
 
     @Override

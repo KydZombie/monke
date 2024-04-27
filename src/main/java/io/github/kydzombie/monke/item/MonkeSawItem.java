@@ -4,8 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.tag.TagKey;
 import net.modificationstation.stationapi.api.util.Identifier;
 
@@ -30,6 +32,7 @@ public class MonkeSawItem extends MonkeToolItem {
         for (int x = pos.x - 1; x <= pos.x + 1; x++) {
             for (int y = pos.y; y <= pos.y + 1; y++) {
                 for (int z = pos.z - 1; z <= pos.z + 1; z++) {
+                    if (x == pos.x && y == pos.y && z == pos.z) continue;
                     if (world.getBlockId(x, y, z) == blockId) {
                         foundBlocks.add(new Vec3i(x, y, z));
                     }
@@ -40,9 +43,11 @@ public class MonkeSawItem extends MonkeToolItem {
         return foundBlocks;
     }
 
-    private void veinMine(ItemStack stack, int blockId, int x, int y, int z, LivingEntity miner) {
-        var world = miner.world;
+    public Vec3i[] findBlocks(World world, BlockPos pos) {
+        return findBlocks(world, world.getBlockId(pos.x, pos.y, pos.z), pos.x, pos.y, pos.z);
+    }
 
+    public Vec3i[] findBlocks(World world, int blockId, int x, int y, int z) {
         ArrayList<Vec3i> blocksToCheck = new ArrayList<>();
         ArrayList<Vec3i> blocksChecked = new ArrayList<>();
         blocksToCheck.add(new Vec3i(x, y, z));
@@ -67,8 +72,18 @@ public class MonkeSawItem extends MonkeToolItem {
 
         blocksChecked.remove(0);
 
-        blocksChecked.forEach((pos) -> {
-            Block block = Block.BLOCKS[world.getBlockId(pos.x, pos.y, pos.z)];
+        return blocksChecked.toArray(Vec3i[]::new);
+    }
+
+    private void veinMine(ItemStack stack, int blockId, int x, int y, int z, LivingEntity miner) {
+        var world = miner.world;
+
+        for (var pos : findBlocks(world, blockId, x, y, z)) {
+            if (stack.getDamage() >= stack.getMaxDamage()) return;
+
+            var foundId = world.getBlockId(pos.x, pos.y, pos.z);
+            if (foundId != blockId) continue;
+            Block block = Block.BLOCKS[foundId];
             int meta = world.getBlockMeta(pos.x, pos.y, pos.z);
             world.setBlock(pos.x, pos.y, pos.z, 0);
             if (miner instanceof PlayerEntity player) {
@@ -78,6 +93,6 @@ public class MonkeSawItem extends MonkeToolItem {
             }
 
             stack.damage(1, miner);
-        });
+        }
     }
 }

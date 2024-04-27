@@ -13,7 +13,7 @@
       "item": "minecraft:crafting_table"
     },
     "P": {
-      "item": "minecraft:oak_planks"
+      "tag": "minecraft:planks"
     }
   },
   "result": {

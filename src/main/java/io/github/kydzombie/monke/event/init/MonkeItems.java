@@ -5,6 +5,7 @@ import io.github.kydzombie.monke.compat.MonkeHMICompat;
 import io.github.kydzombie.monke.item.*;
 import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.unsafeevents.listener.EventListener;
+import net.modificationstation.stationapi.api.event.item.ItemMiningSpeedMultiplierOnStateEvent;
 import net.modificationstation.stationapi.api.event.registry.AfterBlockAndItemRegisterEvent;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.registry.BlockRegistry;
@@ -107,7 +108,7 @@ public class MonkeItems {
     @EventListener
     private void afterItems(AfterBlockAndItemRegisterEvent event) {
         if (FabricLoader.getInstance().isModLoaded("hmifabric")) {
-        MonkeHMICompat.addItems(event);
+            MonkeHMICompat.addItems(event);
         }
     }
 }

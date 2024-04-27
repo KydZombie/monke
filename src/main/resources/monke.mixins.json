@@ -5,11 +5,13 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "HammerSmashingMixin",
-    "MonkeToolCraftingMixin"
+    "MonkeToolCraftingMixin",
+    "SawMiningSpeedMixin"
   ],
   "server": [
   ],
   "client": [
+    "SawWarningMixin"
   ],
   "injectors": {
     "defaultRequire": 1
