@@ -28,6 +28,6 @@ public class MonkeMaterials {
         new MonkeMaterial("iron", ToolMaterial.IRON, 0xFFFFFF, CreationMethod.SMITHING, new ItemStack(Item.IRON_INGOT), 1.1f);
         new MonkeMaterial("gold", ToolMaterial.GOLD, 0xFFBF00, CreationMethod.SMITHING, new ItemStack(Item.GOLD_INGOT), 0.9f);
 
-        new EnergizedWoodMaterial("energized_wood", ToolMaterialFactory.create("monke:energized_wood", 2, 8, 10.0f, 1), 0xB0643A, CreationMethod.WOOD_WORKING, new ItemStack(MonkeItems.energizedWoodShard), 0.8f);
+        new EnergizedWoodMaterial("energized_wood", ToolMaterialFactory.create("monke:energized_wood", 2, 8, 10.0f, 1).inheritsFrom(ToolMaterial.IRON), 0xB0643A, CreationMethod.WOOD_WORKING, new ItemStack(MonkeItems.energizedWoodShard), 0.8f);
     }
 }

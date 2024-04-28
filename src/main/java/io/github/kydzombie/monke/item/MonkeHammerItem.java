@@ -3,6 +3,7 @@ package io.github.kydzombie.monke.item;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.tag.TagKey;
@@ -17,7 +18,9 @@ public class MonkeHammerItem extends MonkeToolItem {
 
     @Override
     public boolean postMine(ItemStack stack, int blockId, int x, int y, int z, LivingEntity miner) {
-        if (blockId == Block.STONE.id || blockId == Block.COBBLESTONE.id || blockId == Block.GRAVEL.id) {
+        if (blockId == Block.STONE.id || blockId == Block.COBBLESTONE.id ||
+                blockId == Block.GRAVEL.id ||
+                blockId == Block.IRON_ORE.id || blockId == Block.GOLD_ORE.id) {
             stack.damage(1, miner);
         }
         return super.postMine(stack, blockId, x, y, z, miner);
@@ -28,6 +31,21 @@ public class MonkeHammerItem extends MonkeToolItem {
             return new ItemStack(Block.GRAVEL);
         } else if (block == Block.GRAVEL) {
             return new ItemStack(Block.SAND);
+        } else if (block == Block.IRON_ORE) {
+            // TODO: Make it drop crushed ore or similar
+            var dropCount = random.nextInt(0, 4);
+            if (dropCount == 3) {
+                return new ItemStack(Item.IRON_INGOT, 2);
+            } else {
+                return new ItemStack(Item.IRON_INGOT, 1);
+            }
+        } else if (block == Block.GOLD_ORE) {
+            var dropCount = random.nextInt(0, 4);
+            if (dropCount == 3) {
+                return new ItemStack(Item.GOLD_INGOT, 2);
+            } else {
+                return new ItemStack(Item.GOLD_INGOT, 1);
+            }
         } else {
             return null;
         }
