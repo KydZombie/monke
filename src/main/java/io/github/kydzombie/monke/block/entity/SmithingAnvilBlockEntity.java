@@ -2,6 +2,7 @@ package io.github.kydzombie.monke.block.entity;
 
 import io.github.kydzombie.monke.event.MonkeMaterialRegistry;
 import io.github.kydzombie.monke.event.init.MonkeItems;
+import io.github.kydzombie.monke.item.MonkeToolItem;
 import io.github.kydzombie.monke.item.ToolPartItem;
 import io.github.kydzombie.monke.material.CreationMethod;
 import net.minecraft.block.entity.BlockEntity;
@@ -26,6 +27,24 @@ public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
         return inventory[slot];
     }
 
+    @Override
+    public void method_1076() {
+        for (var stack : inventory) {
+            if (stack == null) return;
+            if (stack.getItem() instanceof MonkeToolItem tool) {
+                var nbt = stack.getStationNbt();
+                var partsNbt = nbt.getCompound("monke_parts");
+                for (int i = 0; i < tool.parts.length; i++) {
+                    var part = tool.parts[i];
+                    var partNbt = partsNbt.getCompound(part.getTranslationKey());
+                    var material = MonkeToolItem.getPartMaterialFromNbt(partNbt);
+                    if (material == null) continue;
+                    material.inventoryTick(stack, nbt, i);
+                }
+            }
+        }
+    }
+
     void onCraft(ItemStack crafted) {
         for (int i = 0; i < inventory.length - 1; i++) {
             ItemStack item = inventory[i];
@@ -34,6 +53,9 @@ public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
                 item.damage(1, null);
             } else {
                 item.count--;
+                if (item.count <= 0) {
+                    inventory[i] = null;
+                }
             }
         }
         markDirty();
@@ -132,8 +154,8 @@ public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
             return;
         }
 
-        if ((material.creationMethod() == CreationMethod.SMITHING && inventory[0].getItem() != MonkeItems.hammer) ||
-                (material.creationMethod() == CreationMethod.WOOD_WORKING && inventory[0].getItem() != MonkeItems.saw)) {
+        if ((material.creationMethod == CreationMethod.SMITHING && inventory[0].getItem() != MonkeItems.hammer) ||
+                (material.creationMethod == CreationMethod.WOOD_WORKING && inventory[0].getItem() != MonkeItems.saw)) {
             inventory[OUTPUT_SLOT] = null;
             return;
         }

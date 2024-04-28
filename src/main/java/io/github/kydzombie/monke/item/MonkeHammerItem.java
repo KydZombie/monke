@@ -18,8 +18,7 @@ public class MonkeHammerItem extends MonkeToolItem {
     @Override
     public boolean postMine(ItemStack stack, int blockId, int x, int y, int z, LivingEntity miner) {
         if (blockId == Block.STONE.id || blockId == Block.COBBLESTONE.id || blockId == Block.GRAVEL.id) {
-            stack.damage(2, miner);
-            return true;
+            stack.damage(1, miner);
         }
         return super.postMine(stack, blockId, x, y, z, miner);
     }

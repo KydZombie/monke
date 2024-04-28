@@ -30,13 +30,19 @@ public class SawWarningMixin extends DrawContext {
                 var blockPos = new BlockPos(minecraft.field_2823.blockX, minecraft.field_2823.blockY, minecraft.field_2823.blockZ);
                 var blockState = minecraft.world.getBlockState(blockPos);
                 if (!blockState.isOf(Block.LOG)) return;
+                var ableToMine = stack.getMaxDamage() - stack.getDamage() + 1;
                 var blocksToMine = saw.findBlocks(minecraft.world, blockPos).length + 1;
-                if (blocksToMine < stack.getMaxDamage() - stack.getDamage()) return;
+                if (blocksToMine < ableToMine) return;
                 GL11.glPushMatrix();
                 GL11.glScalef(2f, 2f, 2f);
                 drawCenteredTextWithShadow(minecraft.textRenderer, "Warning: Saw Durability Low!", x / (2 * 2), y / (5 * 2), 0xFF2222);
                 GL11.glScalef(.75f, .75f, .75f);
-                drawCenteredTextWithShadow(minecraft.textRenderer, "Will only mine " + (stack.getMaxDamage() - stack.getDamage() + 1) + " / " + blocksToMine + " blocks!", (int) (x / (2 * 1.5)), (int) ((1 * y) / ((3) * 1.5)), 0xFF4444);
+                drawCenteredTextWithShadow(minecraft.textRenderer, "Will only mine " + ableToMine + " / " + blocksToMine + " blocks!", (int) (x / (2 * 1.5)), (int) ((1 * y) / ((3) * 1.5)), 0xFF4444);
+                GL11.glScalef(1.33f, 1.33f, 1.33f);
+                if (blocksToMine == ableToMine) {
+                    drawCenteredTextWithShadow(minecraft.textRenderer, "WILL BREAK", (x / (2 * 2)), ((2 * y) / ((3) * 2)), 0xFF4444);
+                }
+
                 GL11.glPopMatrix();
             }
         }

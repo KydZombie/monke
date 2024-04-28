@@ -5,14 +5,20 @@ import io.github.kydzombie.monke.compat.MonkeHMICompat;
 import io.github.kydzombie.monke.item.*;
 import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.unsafeevents.listener.EventListener;
+import net.minecraft.item.Item;
 import net.modificationstation.stationapi.api.event.item.ItemMiningSpeedMultiplierOnStateEvent;
 import net.modificationstation.stationapi.api.event.registry.AfterBlockAndItemRegisterEvent;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.registry.BlockRegistry;
 import net.modificationstation.stationapi.api.tag.TagKey;
+import net.modificationstation.stationapi.api.template.item.TemplateItem;
 import net.modificationstation.stationapi.api.util.Identifier;
 
 public class MonkeItems {
+    /* Items */
+
+    public static Item energizedWoodShard;
+
     /* Parts */
 
     // Generic Parts
@@ -44,6 +50,9 @@ public class MonkeItems {
 
     @EventListener
     private void registerItems(ItemRegistryEvent event) {
+        Monke.LOGGER.info("Registering items...");
+        energizedWoodShard = new TemplateItem(Monke.NAMESPACE.id("energized_wood_shard")).setTranslationKey(Monke.NAMESPACE.id("energized_wood_shard"));
+
         Monke.LOGGER.info("Registering tool parts...");
         toolHandle = new ToolPartItem(Monke.NAMESPACE.id("tool_handle"));
 
@@ -103,6 +112,24 @@ public class MonkeItems {
                 TagKey.of(BlockRegistry.INSTANCE.getKey(), Identifier.of("minecraft:mineable/axe")),
                 new ToolPartItem[]{sawBlade, toolHandle }
         );
+    }
+
+    @EventListener
+    private void miningSpeed(ItemMiningSpeedMultiplierOnStateEvent event) {
+        // TODO: Wait for this to get fixed in StationAPI?
+        if (event.itemStack != null && event.itemStack.getItem() instanceof MonkeToolItem tool) {
+            var miningSpeed = event.miningSpeedMultiplier;
+            var nbt = event.itemStack.getStationNbt();
+            var partsNbt = nbt.getCompound("monke_parts");
+            for (int i = 0; i < tool.parts.length; i++) {
+                var part = tool.parts[i];
+                var partNbt = partsNbt.getCompound(part.getTranslationKey());
+                var material = MonkeToolItem.getPartMaterialFromNbt(partNbt);
+                if (material == null) continue;
+                miningSpeed *= material.getMiningSpeedMultiplier(event.itemStack, event.state, partNbt, i);
+            }
+            event.miningSpeedMultiplier = miningSpeed;
+        }
     }
 
     @EventListener

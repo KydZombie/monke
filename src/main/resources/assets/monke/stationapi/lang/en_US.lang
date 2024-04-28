@@ -2,6 +2,8 @@ tile.loose_smithing_stone.name=Loose Smithing Stone
 tile.smithing_stone.name=Smithing Stone
 tile.smithing_anvil.name=Smithing Anvil
 
+item.energized_wood_shard.name=Energized Wood Shard
+
 item.tool_handle.name=Tool Handle
 
 item.pickaxe_head.name=Pickaxe Head

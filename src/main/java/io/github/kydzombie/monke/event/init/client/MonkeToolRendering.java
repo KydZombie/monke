@@ -36,7 +36,7 @@ public class MonkeToolRendering {
 
         event.itemColors.register((itemStack, tintIndex) -> {
             var material = ToolPartItem.getMonkeMaterial(itemStack);
-            return material != null ? material.color() : 0;
+            return material != null ? material.color : 0;
         }, MonkeToolRegistry.parts.toArray(ToolPartItem[]::new));
 
         event.itemColors.register((itemStack, tintIndex) -> {
@@ -44,8 +44,8 @@ public class MonkeToolRendering {
             assert(tool instanceof MonkeToolItem);
             var part = renderingOrders.get(tool);
             if (part == null || part.length < tintIndex) return 0;
-            var material = MonkeToolItem.getMonkeMaterial(itemStack, part[tintIndex]);
-            return material != null ? material.color() : 0;
+            var material = MonkeToolItem.getPartMaterial(itemStack, part[tintIndex]);
+            return material != null ? material.color : 0;
         }, MonkeToolRegistry.tools.toArray(MonkeToolItem[]::new));
     }
 }
