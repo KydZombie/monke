@@ -1,7 +1,6 @@
 package io.github.kydzombie.monke.material;
 
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -78,7 +77,7 @@ public class EnergizedWoodMaterial extends MonkeMaterial {
             monkeNbt.putInt(HEAL_TICK_KEY, i + 1);
             stack.getStationNbt().put("monke_data", monkeNbt);
         } else if (holder instanceof PlayerEntity player) {
-            var minecraft = ((Minecraft)FabricLoader.getInstance().getGameInstance());
+            var minecraft = ((Minecraft) FabricLoader.getInstance().getGameInstance());
             if (!held || !player.handSwinging || minecraft.field_2823 == null || minecraft.field_2823.type != HitResultType.BLOCK) {
                 if (monkeNbt.getInt(MINING_GRACE_PERIOD_KEY) >= MINING_GRACE_TIME) {
                     monkeNbt.putInt(MINING_VELOCITY_KEY, 0);

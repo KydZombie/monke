@@ -32,7 +32,7 @@ public class SmithingAnvilBlock extends TemplateBlockWithEntity {
     @Override
     public boolean onUse(World world, int x, int y, int z, PlayerEntity player) {
         if (!player.method_1373()) {
-            var blockEntity = (SmithingAnvilBlockEntity)world.method_1777(x, y, z);
+            var blockEntity = (SmithingAnvilBlockEntity) world.method_1777(x, y, z);
             GuiHelper.openGUI(
                     player,
                     Monke.NAMESPACE.id("smithing_anvil"),
@@ -46,16 +46,16 @@ public class SmithingAnvilBlock extends TemplateBlockWithEntity {
 
     @Override
     public void onBreak(World world, int x, int y, int z) {
-        SmithingAnvilBlockEntity smithingAnvilBlockEntity = (SmithingAnvilBlockEntity)world.method_1777(x, y, z);
+        SmithingAnvilBlockEntity smithingAnvilBlockEntity = (SmithingAnvilBlockEntity) world.method_1777(x, y, z);
 
-        for(int slot = 0; slot < smithingAnvilBlockEntity.size() - 1; ++slot) {
+        for (int slot = 0; slot < smithingAnvilBlockEntity.size() - 1; ++slot) {
             ItemStack itemStack = smithingAnvilBlockEntity.getStack(slot);
             if (itemStack != null) {
                 float xOffset = random.nextFloat() * 0.8F + 0.1F;
                 float yOffset = random.nextFloat() * 0.8F + 0.1F;
                 float zOffset = random.nextFloat() * 0.8F + 0.1F;
 
-                while(itemStack.count > 0) {
+                while (itemStack.count > 0) {
                     int dropCount = random.nextInt(21) + 10;
                     if (dropCount > itemStack.count) {
                         dropCount = itemStack.count;

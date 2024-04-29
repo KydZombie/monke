@@ -10,7 +10,8 @@ import net.minecraft.entity.player.PlayerInventory;
 import org.lwjgl.opengl.GL11;
 
 public class SmithingAnvilScreen extends HandledScreen {
-    SmithingAnvilBlockEntity smithingAnvilBlockEntity;
+    final SmithingAnvilBlockEntity smithingAnvilBlockEntity;
+
     public SmithingAnvilScreen(PlayerInventory inventory, SmithingAnvilBlockEntity smithingAnvilBlockEntity) {
         super(new SmithingAnvilScreenHandler(inventory, smithingAnvilBlockEntity));
         this.smithingAnvilBlockEntity = smithingAnvilBlockEntity;

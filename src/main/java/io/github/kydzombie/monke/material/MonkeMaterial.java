@@ -3,7 +3,6 @@ package io.github.kydzombie.monke.material;
 import io.github.kydzombie.monke.Monke;
 import io.github.kydzombie.monke.event.MonkeMaterialRegistry;
 import io.github.kydzombie.monke.item.MonkeToolItem;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -33,11 +32,15 @@ public class MonkeMaterial {
         MonkeMaterialRegistry.registerMaterial(this);
     }
 
-    public float getMiningSpeedMultiplier(ItemStack stack, BlockState state, NbtCompound partNbt, int partIndex) { return 1f; }
+    public float getMiningSpeedMultiplier(ItemStack stack, BlockState state, NbtCompound partNbt, int partIndex) {
+        return 1f;
+    }
 
-    public void postMine(ItemStack stack, int blockId, int x, int y, int z, LivingEntity miner, int partIndex) {}
+    public void postMine(ItemStack stack, int blockId, int x, int y, int z, LivingEntity miner, int partIndex) {
+    }
 
-    public void inventoryTick(@Nullable Entity holder, ItemStack stack, NbtCompound partNbt, int partIndex, boolean held) {}
+    public void inventoryTick(@Nullable Entity holder, ItemStack stack, NbtCompound partNbt, int partIndex, boolean held) {
+    }
 
     public void inventoryTick(ItemStack stack, NbtCompound partNbt, int partIndex) {
         inventoryTick(null, stack, partNbt, partIndex, false);

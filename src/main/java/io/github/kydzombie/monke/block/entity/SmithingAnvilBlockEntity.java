@@ -107,7 +107,7 @@ public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
         if (this.world.method_1777(this.x, this.y, this.z) != this) {
             return false;
         } else {
-            return !(player.method_1347((double)this.x + 0.5, (double)this.y + 0.5, (double)this.z + 0.5) > 64.0);
+            return !(player.method_1347((double) this.x + 0.5, (double) this.y + 0.5, (double) this.z + 0.5) > 64.0);
         }
     }
 

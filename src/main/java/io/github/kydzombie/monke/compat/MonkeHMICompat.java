@@ -20,10 +20,10 @@ public class MonkeHMICompat implements HMIItemListRefreshEvent {
 
     @EventListener
     private void registerTabsAndHideItems(HMITabRegistryEvent event) {
-        for (var tool: MonkeToolRegistry.tools) {
+        for (var tool : MonkeToolRegistry.tools) {
             Utils.hiddenItems.add(new ItemStack(tool));
         }
-        for (var part: MonkeToolRegistry.parts) {
+        for (var part : MonkeToolRegistry.parts) {
             Utils.hiddenItems.add(new ItemStack(part));
         }
     }

@@ -19,7 +19,7 @@ public class MonkeHoeItem extends MonkeToolItem {
             return false;
         } else {
             Block var10 = Block.FARMLAND;
-            world.playSound((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, var10.soundGroup.getSound(), (var10.soundGroup.method_1976() + 1.0F) / 2.0F, var10.soundGroup.method_1977() * 0.8F);
+            world.playSound((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F, var10.soundGroup.getSound(), (var10.soundGroup.method_1976() + 1.0F) / 2.0F, var10.soundGroup.method_1977() * 0.8F);
             if (!world.isRemote) {
                 world.setBlock(x, y, z, var10.id);
                 stack.damage(1, user);

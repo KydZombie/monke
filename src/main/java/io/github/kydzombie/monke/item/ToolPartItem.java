@@ -37,7 +37,7 @@ public class ToolPartItem extends TemplateItem implements CustomTooltipProvider 
     @Override
     public String[] getTooltip(ItemStack stack, String originalTooltip) {
         var material = getMonkeMaterial(stack);
-        return new String[] { originalTooltip + ": " + (material != null ? material.name : "none") };
+        return new String[]{originalTooltip + ": " + (material != null ? material.name : "none")};
     }
 
     @Override

@@ -19,7 +19,8 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(InGameHud.class)
 public class SawWarningMixin extends DrawContext {
-    @Shadow private Minecraft minecraft;
+    @Shadow
+    private Minecraft minecraft;
 
     @Inject(at = @At("RETURN"), method = "render(FZII)V", locals = LocalCapture.CAPTURE_FAILHARD)
     private void addSawWarning(float bl, boolean i, int j, int par4, CallbackInfo ci, class_564 var5, int x, int y, TextRenderer textRenderer) {
@@ -35,12 +36,12 @@ public class SawWarningMixin extends DrawContext {
                 if (blocksToMine < ableToMine) return;
                 GL11.glPushMatrix();
                 GL11.glScalef(2f, 2f, 2f);
-                drawCenteredTextWithShadow(minecraft.textRenderer, "Warning: Saw Durability Low!", x / (2 * 2), y / (5 * 2), 0xFF2222);
+                drawCenteredTextWithShadow(minecraft.textRenderer, "Warning: Saw Durability Low!", x / 4, y, 0xFF2222);
                 GL11.glScalef(.75f, .75f, .75f);
-                drawCenteredTextWithShadow(minecraft.textRenderer, "Will only mine " + ableToMine + " / " + blocksToMine + " blocks!", (int) (x / (2 * 1.5)), (int) ((1 * y) / ((3) * 1.5)), 0xFF4444);
+                drawCenteredTextWithShadow(minecraft.textRenderer, "Will only mine " + ableToMine + " / " + blocksToMine + " blocks!", x / 3, (int) ((y) / 4.5), 0xFF4444);
                 GL11.glScalef(1.33f, 1.33f, 1.33f);
                 if (blocksToMine == ableToMine) {
-                    drawCenteredTextWithShadow(minecraft.textRenderer, "WILL BREAK", (x / (2 * 2)), ((2 * y) / ((3) * 2)), 0xFF4444);
+                    drawCenteredTextWithShadow(minecraft.textRenderer, "WILL BREAK", x / 4, y / 3, 0xFF4444);
                 }
 
                 GL11.glPopMatrix();

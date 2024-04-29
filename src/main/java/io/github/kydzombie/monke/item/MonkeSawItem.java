@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
-import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.tag.TagKey;
 import net.modificationstation.stationapi.api.util.Identifier;
 
@@ -15,6 +14,7 @@ import java.util.ArrayList;
 
 public class MonkeSawItem extends MonkeToolItem {
     private static final int VEIN_MINE_CAP = 50;
+
     public MonkeSawItem(Identifier identifier, int damageBoost, TagKey<Block> effectiveBlocks, ToolPartItem[] parts) {
         super(identifier, damageBoost, effectiveBlocks, parts);
     }
@@ -87,7 +87,7 @@ public class MonkeSawItem extends MonkeToolItem {
             int meta = world.getBlockMeta(pos.x, pos.y, pos.z);
             world.setBlock(pos.x, pos.y, pos.z, 0);
             if (miner instanceof PlayerEntity player) {
-                block.afterBreak(world, player,  pos.x, pos.y, pos.z, meta);
+                block.afterBreak(world, player, pos.x, pos.y, pos.z, meta);
             } else {
                 block.dropStacks(world, pos.x, pos.y, pos.z, meta);
             }

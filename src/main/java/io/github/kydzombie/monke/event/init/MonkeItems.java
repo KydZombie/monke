@@ -72,31 +72,31 @@ public class MonkeItems {
                 Monke.NAMESPACE.id("pickaxe"),
                 2,
                 TagKey.of(BlockRegistry.INSTANCE.getKey(), Identifier.of("minecraft:mineable/pickaxe")),
-                new ToolPartItem[]{ pickaxeHead, toolHandle }
+                new ToolPartItem[]{pickaxeHead, toolHandle}
         );
         axe = new MonkeToolItem(
                 Monke.NAMESPACE.id("axe"),
                 3,
                 TagKey.of(BlockRegistry.INSTANCE.getKey(), Identifier.of("minecraft:mineable/axe")),
-                new ToolPartItem[]{ axeHead, toolHandle }
+                new ToolPartItem[]{axeHead, toolHandle}
         );
         shovel = new MonkeToolItem(
                 Monke.NAMESPACE.id("shovel"),
                 1,
                 TagKey.of(BlockRegistry.INSTANCE.getKey(), Identifier.of("minecraft:mineable/shovel")),
-                new ToolPartItem[]{ shovelHead, toolHandle }
+                new ToolPartItem[]{shovelHead, toolHandle}
         );
         hoe = new MonkeHoeItem(
                 Monke.NAMESPACE.id("hoe"),
                 1,
                 TagKey.of(BlockRegistry.INSTANCE.getKey(), Identifier.of("minecraft:mineable/hoe")),
-                new ToolPartItem[]{ hoeHead, toolHandle }
+                new ToolPartItem[]{hoeHead, toolHandle}
         );
         sword = new MonkeSwordItem(
                 Monke.NAMESPACE.id("sword"),
                 4,
                 TagKey.of(BlockRegistry.INSTANCE.getKey(), Identifier.of("minecraft:mineable/sword")),
-                new ToolPartItem[]{ swordBlade, swordGuard, toolHandle }
+                new ToolPartItem[]{swordBlade, swordGuard, toolHandle}
         );
 
         // Extended Tools
@@ -104,13 +104,13 @@ public class MonkeItems {
                 Monke.NAMESPACE.id("hammer"),
                 3,
                 TagKey.of(BlockRegistry.INSTANCE.getKey(), Identifier.of("minecraft:mineable/pickaxe")),
-                new ToolPartItem[]{ hammerHead, toolHandle }
+                new ToolPartItem[]{hammerHead, toolHandle}
         );
         saw = new MonkeSawItem(
                 Monke.NAMESPACE.id("saw"),
                 3,
                 TagKey.of(BlockRegistry.INSTANCE.getKey(), Identifier.of("minecraft:mineable/axe")),
-                new ToolPartItem[]{sawBlade, toolHandle }
+                new ToolPartItem[]{sawBlade, toolHandle}
         );
     }
 

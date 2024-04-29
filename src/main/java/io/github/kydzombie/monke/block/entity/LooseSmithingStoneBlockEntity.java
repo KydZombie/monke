@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.FallingBlockEntity;
-import net.minecraft.world.World;
 
 public class LooseSmithingStoneBlockEntity extends BlockEntity {
     private static final int SETTING_TIME = 2 * 60 * 20; // 2 minutes

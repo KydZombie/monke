@@ -13,7 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Block.class)
 public abstract class HammerSmashingMixin {
-    @Shadow protected abstract void dropStack(World world, int x, int y, int z, ItemStack itemStack);
+    @Shadow
+    protected abstract void dropStack(World world, int x, int y, int z, ItemStack itemStack);
 
     @Inject(
             method = "afterBreak(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;IIII)V",

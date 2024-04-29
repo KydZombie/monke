@@ -15,9 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractBlockState.class)
 public abstract class SawMiningSpeedMixin {
-    @Shadow public abstract Block getBlock();
+    @Shadow
+    public abstract Block getBlock();
 
-    @Shadow protected abstract BlockState asBlockState();
+    @Shadow
+    protected abstract BlockState asBlockState();
 
     @Inject(at = @At("HEAD"), method = "calcBlockBreakingDelta(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)F", cancellable = true)
     private void inject(PlayerEntity player, BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {

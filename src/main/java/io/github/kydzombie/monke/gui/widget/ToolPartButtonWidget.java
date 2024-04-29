@@ -4,7 +4,6 @@ import cyclops.data.tuple.Tuple2;
 import io.github.kydzombie.monke.event.init.MonkeItems;
 import io.github.kydzombie.monke.item.ToolPartItem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import org.lwjgl.opengl.GL11;
 
