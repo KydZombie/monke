@@ -19,6 +19,9 @@ public class MonkeItems {
 
     public static Item energizedWoodShard;
 
+    public static Item crushedIron;
+    public static Item crushedGold;
+
     /* Parts */
 
     // Generic Parts
@@ -52,6 +55,8 @@ public class MonkeItems {
     private void registerItems(ItemRegistryEvent event) {
         Monke.LOGGER.info("Registering items...");
         energizedWoodShard = new TemplateItem(Monke.NAMESPACE.id("energized_wood_shard")).setTranslationKey(Monke.NAMESPACE.id("energized_wood_shard"));
+        crushedIron = new TemplateItem(Monke.NAMESPACE.id("crushed_iron")).setTranslationKey(Monke.NAMESPACE.id("crushed_iron"));
+        crushedGold = new TemplateItem(Monke.NAMESPACE.id("crushed_gold")).setTranslationKey(Monke.NAMESPACE.id("crushed_gold"));
 
         Monke.LOGGER.info("Registering tool parts...");
         toolHandle = new ToolPartItem(Monke.NAMESPACE.id("tool_handle"));

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "monke:crushed_gold"
+  },
+  "result": {
+    "item": "minecraft:gold_ingot"
+  },
+  "cookingtime": 200
+}

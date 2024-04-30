@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "monke:crushed_iron"
+  },
+  "result": {
+    "item": "minecraft:iron_ingot"
+  },
+  "cookingtime": 200
+}

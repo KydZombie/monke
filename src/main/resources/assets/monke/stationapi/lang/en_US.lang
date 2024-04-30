@@ -3,6 +3,8 @@ tile.smithing_stone.name=Smithing Stone
 tile.smithing_anvil.name=Smithing Anvil
 
 item.energized_wood_shard.name=Energized Wood Shard
+item.crushed_iron.name=Crushed Iron
+item.crushed_gold.name=Crushed Gold
 
 item.tool_handle.name=Tool Handle
 

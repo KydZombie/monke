@@ -1,5 +1,6 @@
 package io.github.kydzombie.monke.item;
 
+import io.github.kydzombie.monke.event.init.MonkeItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,19 +34,9 @@ public class MonkeHammerItem extends MonkeToolItem {
             return new ItemStack(Block.SAND);
         } else if (block == Block.IRON_ORE) {
             // TODO: Make it drop crushed ore or similar
-            var dropCount = random.nextInt(0, 4);
-            if (dropCount == 3) {
-                return new ItemStack(Item.IRON_INGOT, 2);
-            } else {
-                return new ItemStack(Item.IRON_INGOT, 1);
-            }
+            return new ItemStack(MonkeItems.crushedIron, random.nextInt(0, 4) == 3 ? 2 : 1);
         } else if (block == Block.GOLD_ORE) {
-            var dropCount = random.nextInt(0, 4);
-            if (dropCount == 3) {
-                return new ItemStack(Item.GOLD_INGOT, 2);
-            } else {
-                return new ItemStack(Item.GOLD_INGOT, 1);
-            }
+            return new ItemStack(MonkeItems.crushedGold, random.nextInt(0, 4) == 3 ? 2 : 1);
         } else {
             return null;
         }
