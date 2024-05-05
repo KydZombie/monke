@@ -12,6 +12,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.client.item.CustomTooltipProvider;
 import net.modificationstation.stationapi.api.item.tool.ToolMaterialFactory;
+import net.modificationstation.stationapi.api.registry.ItemRegistry;
 import net.modificationstation.stationapi.api.tag.TagKey;
 import net.modificationstation.stationapi.api.template.item.TemplateToolItem;
 import net.modificationstation.stationapi.api.util.Identifier;
@@ -41,14 +42,14 @@ public class MonkeToolItem extends TemplateToolItem implements CustomTooltipProv
     public static @Nullable MonkeMaterial getPartMaterial(ItemStack stack, ToolPartItem part) {
         var nbt = stack.getStationNbt();
         var partsNbt = nbt.getCompound("monke_parts");
-        var partNbt = partsNbt.getCompound(part.getTranslationKey());
+        var partNbt = partsNbt.getCompound(ItemRegistry.INSTANCE.getId(part.id).orElseThrow().toString());
         return getPartMaterialFromNbt(partNbt);
     }
 
     public static void setMonkePart(@NotNull ItemStack stack, @NotNull ItemStack part) {
         var nbt = stack.getStationNbt();
         var partsNbt = nbt.getCompound("monke_parts");
-        partsNbt.put(part.getTranslationKey(), part.getStationNbt().getCompound("monke_data").copy());
+        partsNbt.put(ItemRegistry.INSTANCE.getId(part.itemId).orElseThrow().toString(), part.getStationNbt().getCompound("monke_data").copy());
         nbt.put("monke_parts", partsNbt);
     }
 
@@ -64,7 +65,7 @@ public class MonkeToolItem extends TemplateToolItem implements CustomTooltipProv
         var partsNbt = nbt.getCompound("monke_parts");
         for (int i = 0; i < parts.length; i++) {
             var part = parts[i];
-            var partNbt = partsNbt.getCompound(part.getTranslationKey());
+            var partNbt = partsNbt.getCompound(ItemRegistry.INSTANCE.getId(part.id).orElseThrow().toString());
             var material = getPartMaterialFromNbt(partNbt);
             if (material == null) continue;
             durability = material.getNewDurability(stack, partNbt, i, durability);
@@ -78,7 +79,7 @@ public class MonkeToolItem extends TemplateToolItem implements CustomTooltipProv
         var partsNbt = nbt.getCompound("monke_parts");
         for (int i = 0; i < parts.length; i++) {
             var part = parts[i];
-            var partNbt = partsNbt.getCompound(part.getTranslationKey());
+            var partNbt = partsNbt.getCompound(ItemRegistry.INSTANCE.getId(part.id).orElseThrow().toString());
             var material = getPartMaterialFromNbt(partNbt);
             if (material == null) continue;
             material.postMine(stack, blockId, x, y, z, miner, i);
@@ -92,7 +93,7 @@ public class MonkeToolItem extends TemplateToolItem implements CustomTooltipProv
         var partsNbt = nbt.getCompound("monke_parts");
         for (int i = 0; i < parts.length; i++) {
             var part = parts[i];
-            var partNbt = partsNbt.getCompound(part.getTranslationKey());
+            var partNbt = partsNbt.getCompound(ItemRegistry.INSTANCE.getId(part.id).orElseThrow().toString());
             var material = getPartMaterialFromNbt(partNbt);
             if (material == null) continue;
             material.inventoryTick(entity, stack, nbt, i, selected);
@@ -106,7 +107,7 @@ public class MonkeToolItem extends TemplateToolItem implements CustomTooltipProv
         tooltip.add(originalTooltip);
         for (var part : parts) {
             var material = getPartMaterial(stack, part);
-            tooltip.add(part.getTranslatedName() + ": " + (material != null ? material.name : "none"));
+            tooltip.add(ItemRegistry.INSTANCE.getId(part.id).orElseThrow() + ": " + (material != null ? material.name : "none"));
         }
         var durability = stack.getMaxDamage();
         tooltip.add("D: " + (durability - stack.getDamage()) + '/' + durability);
