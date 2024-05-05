@@ -32,7 +32,7 @@ public class SmithingAnvilBlock extends TemplateBlockWithEntity {
     @Override
     public boolean onUse(World world, int x, int y, int z, PlayerEntity player) {
         if (!player.method_1373()) {
-            var blockEntity = (SmithingAnvilBlockEntity) world.method_1777(x, y, z);
+            var blockEntity = (SmithingAnvilBlockEntity) world.getBlockEntity(x, y, z);
             GuiHelper.openGUI(
                     player,
                     Monke.NAMESPACE.id("smithing_anvil"),
@@ -46,7 +46,7 @@ public class SmithingAnvilBlock extends TemplateBlockWithEntity {
 
     @Override
     public void onBreak(World world, int x, int y, int z) {
-        SmithingAnvilBlockEntity smithingAnvilBlockEntity = (SmithingAnvilBlockEntity) world.method_1777(x, y, z);
+        var smithingAnvilBlockEntity = (SmithingAnvilBlockEntity) world.getBlockEntity(x, y, z);
 
         for (int slot = 0; slot < smithingAnvilBlockEntity.size() - 1; ++slot) {
             ItemStack itemStack = smithingAnvilBlockEntity.getStack(slot);

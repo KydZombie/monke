@@ -1,26 +1,26 @@
-tile.loose_smithing_stone.name=Loose Smithing Stone
-tile.smithing_stone.name=Smithing Stone
-tile.smithing_anvil.name=Smithing Anvil
+tile.@.loose_smithing_stone.name=Loose Smithing Stone
+tile.@.smithing_stone.name=Smithing Stone
+tile.@.smithing_anvil.name=Smithing Anvil
 
-item.energized_wood_shard.name=Energized Wood Shard
-item.crushed_iron.name=Crushed Iron
-item.crushed_gold.name=Crushed Gold
+item.@.energized_wood_shard.name=Energized Wood Shard
+item.@.crushed_iron.name=Crushed Iron
+item.@.crushed_gold.name=Crushed Gold
 
-item.tool_handle.name=Tool Handle
+item.@.tool_handle.name=Tool Handle
 
-item.pickaxe_head.name=Pickaxe Head
-item.hammer_head.name=Hammer Head
-item.saw_blade.name=Saw Blade
-item.axe_head.name=Axe Head
-item.shovel_head.name=Shovel Head
-item.hoe_head.name=Hoe Head
-item.sword_blade.name=Sword Blade
-item.sword_guard.name=Sword Guard
+item.@.pickaxe_head.name=Pickaxe Head
+item.@.hammer_head.name=Hammer Head
+item.@.saw_blade.name=Saw Blade
+item.@.axe_head.name=Axe Head
+item.@.shovel_head.name=Shovel Head
+item.@.hoe_head.name=Hoe Head
+item.@.sword_blade.name=Sword Blade
+item.@.sword_guard.name=Sword Guard
 
-item.pickaxe.name=Pickaxe
-item.hammer.name=Hammer
-item.saw.name=Saw
-item.axe.name=Axe
-item.shovel.name=Shovel
-item.hoe.name=Hoe
-item.sword.name=Sword
+item.@.pickaxe.name=Pickaxe
+item.@.hammer.name=Hammer
+item.@.saw.name=Saw
+item.@.axe.name=Axe
+item.@.shovel.name=Shovel
+item.@.hoe.name=Hoe
+item.@.sword.name=Sword

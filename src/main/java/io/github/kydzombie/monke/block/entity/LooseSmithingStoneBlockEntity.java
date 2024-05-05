@@ -30,7 +30,7 @@ public class LooseSmithingStoneBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void method_1076() {
+    public void tick() {
         if (isFloating() && y >= 0) {
             FallingBlockEntity entity = new FallingBlockEntity(world, x + 0.5F, y + 0.5F, z + 0.5F, getBlock().id);
             world.method_210(entity);

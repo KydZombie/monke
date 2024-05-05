@@ -28,7 +28,7 @@ public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
     }
 
     @Override
-    public void method_1076() {
+    public void tick() {
         for (var stack : inventory) {
             if (stack == null) return;
             if (stack.getItem() instanceof MonkeToolItem tool) {
@@ -104,10 +104,10 @@ public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
 
     @Override
     public boolean canPlayerUse(PlayerEntity player) {
-        if (this.world.method_1777(this.x, this.y, this.z) != this) {
+        if (this.world.getBlockEntity(x, y, z) != this) {
             return false;
         } else {
-            return !(player.method_1347((double) this.x + 0.5, (double) this.y + 0.5, (double) this.z + 0.5) > 64.0);
+            return !(player.method_1347((double) x + 0.5, (double) y + 0.5, (double) z + 0.5) > 64.0);
         }
     }
 
