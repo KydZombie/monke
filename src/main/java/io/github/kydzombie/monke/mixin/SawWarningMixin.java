@@ -1,6 +1,6 @@
 package io.github.kydzombie.monke.mixin;
 
-import io.github.kydzombie.monke.item.MonkeSawItem;
+import io.github.kydzombie.monke.item.tool.MonkeSawItem;
 import net.minecraft.block.Block;
 import net.minecraft.class_564;
 import net.minecraft.client.Minecraft;

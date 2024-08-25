@@ -3,8 +3,8 @@ package io.github.kydzombie.monke.event.init.client;
 import io.github.kydzombie.monke.Monke;
 import io.github.kydzombie.monke.event.MonkeToolRegistry;
 import io.github.kydzombie.monke.event.init.MonkeItems;
-import io.github.kydzombie.monke.item.MonkeToolItem;
 import io.github.kydzombie.monke.item.ToolPartItem;
+import io.github.kydzombie.monke.item.tool.MonkeToolItem;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.modificationstation.stationapi.api.client.event.color.item.ItemColorsRegisterEvent;
 import net.modificationstation.stationapi.api.event.registry.AfterBlockAndItemRegisterEvent;
@@ -37,7 +37,7 @@ public class MonkeToolRendering {
         event.itemColors.register((itemStack, tintIndex) -> {
             var material = ToolPartItem.getMonkeMaterial(itemStack);
             return material != null ? material.color : 0;
-        }, MonkeToolRegistry.parts.toArray(ToolPartItem[]::new));
+        }, MonkeToolRegistry.parts.values().toArray(ToolPartItem[]::new));
 
         event.itemColors.register((itemStack, tintIndex) -> {
             var tool = itemStack.getItem();

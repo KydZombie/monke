@@ -1,6 +1,6 @@
 package io.github.kydzombie.monke.event;
 
-import io.github.kydzombie.monke.material.MonkeMaterial;
+import io.github.kydzombie.monke.custom.material.MonkeMaterial;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;

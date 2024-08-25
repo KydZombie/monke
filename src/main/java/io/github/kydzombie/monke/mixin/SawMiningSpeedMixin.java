@@ -1,6 +1,6 @@
 package io.github.kydzombie.monke.mixin;
 
-import io.github.kydzombie.monke.item.MonkeSawItem;
+import io.github.kydzombie.monke.item.tool.MonkeSawItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;

@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "monke",
   "version": "${version}",
-
   "name": "Monke",
   "description": "A tool mod roughly inspired by Tinker's Construct and TerraFirmaCraft.",
   "authors": [
@@ -12,10 +11,8 @@
     "homepage": "https://glass-launcher.net/",
     "sources": "https://github.com/calmilamsy/stationapi-example-mod"
   },
-
   "license": "MIT",
   "icon": "assets/monke/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "stationapi:event_bus": [
@@ -23,7 +20,10 @@
       "io.github.kydzombie.monke.event.init.MonkeBlocks",
       "io.github.kydzombie.monke.event.init.MonkeCrafting",
       "io.github.kydzombie.monke.event.init.MonkeItems",
-      "io.github.kydzombie.monke.event.init.MonkeMaterials"
+      "io.github.kydzombie.monke.event.init.MonkeMaterials",
+      "io.github.kydzombie.monke.event.init.MonkePackets",
+      "io.github.kydzombie.monke.compat.MonkeSPCCompat",
+      "io.github.kydzombie.monke.compat.MonkeAccessoryAPICompat"
     ],
     "stationapi:event_bus_client": [
       "io.github.kydzombie.monke.event.init.client.MonkeToolRendering",
@@ -39,8 +39,10 @@
   "mixins": [
     "monke.mixins.json"
   ],
-
   "depends": {
     "minecraft": "1.0.0-beta.7.3"
+  },
+  "suggests": {
+    "spc": "*"
   }
 }

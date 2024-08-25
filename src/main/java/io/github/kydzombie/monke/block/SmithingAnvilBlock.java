@@ -39,6 +39,7 @@ public class SmithingAnvilBlock extends TemplateBlockWithEntity {
                     blockEntity,
                     new SmithingAnvilScreenHandler(player.inventory, blockEntity)
             );
+            blockEntity.currentPlayer = player;
             return true;
         }
         return super.onUse(world, x, y, z, player);

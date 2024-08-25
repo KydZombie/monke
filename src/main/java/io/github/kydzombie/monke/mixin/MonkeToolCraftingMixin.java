@@ -1,8 +1,8 @@
 package io.github.kydzombie.monke.mixin;
 
 import io.github.kydzombie.monke.event.MonkeToolRegistry;
-import io.github.kydzombie.monke.item.MonkeToolItem;
 import io.github.kydzombie.monke.item.ToolPartItem;
+import io.github.kydzombie.monke.item.tool.MonkeToolItem;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CraftingRecipeManager;

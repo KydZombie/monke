@@ -7,6 +7,7 @@ import net.modificationstation.stationapi.api.entity.player.PlayerHandler;
 
 public class MonkePlayerHandler implements PlayerHandler {
     private final PlayerEntity player;
+
     private int totalCrafts = 0;
 
     public MonkePlayerHandler(PlayerEntity player) {
@@ -25,8 +26,12 @@ public class MonkePlayerHandler implements PlayerHandler {
         return false;
     }
 
+    public int getTotalCrafts() {
+        return totalCrafts;
+    }
+
     public void addCraft() {
         totalCrafts++;
-        Monke.LOGGER.debug(player.name + "'s crafts is now " + totalCrafts + 'n');
+        Monke.LOGGER.debug("{}'s crafts is now {}n", player.name, totalCrafts);
     }
 }

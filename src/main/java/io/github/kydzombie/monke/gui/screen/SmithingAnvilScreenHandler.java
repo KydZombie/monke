@@ -8,9 +8,11 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
 public class SmithingAnvilScreenHandler extends ScreenHandler {
-    private final SmithingAnvilBlockEntity smithingAnvilBlockEntity;
+    public final PlayerEntity player;
+    public final SmithingAnvilBlockEntity smithingAnvilBlockEntity;
 
     public SmithingAnvilScreenHandler(PlayerInventory playerInventory, SmithingAnvilBlockEntity smithingAnvilBlockEntity) {
+        this.player = playerInventory.player;
         this.smithingAnvilBlockEntity = smithingAnvilBlockEntity;
 
         this.addSlot(new Slot(smithingAnvilBlockEntity, 0, 27, 22));
@@ -33,4 +35,24 @@ public class SmithingAnvilScreenHandler extends ScreenHandler {
     public boolean canUse(PlayerEntity player) {
         return smithingAnvilBlockEntity.canPlayerUse(player);
     }
+
+    @Override
+    public void onClosed(PlayerEntity player) {
+        super.onClosed(player);
+        smithingAnvilBlockEntity.currentPlayer = null;
+    }
+
+//    @Override
+//    public ItemStack getStackInSlot(int slotIndex) {
+//        if (slotIndex != 2) return super.getStackInSlot(slotIndex);
+//
+//        ItemStack stack = super.getStackInSlot(slotIndex);
+//        Slot slot = (Slot) this.slots.get(slotIndex);
+//        smithingAnvilBlockEntity.onCraft(stack);
+//        slot.onCrafted(stack);
+//        var stats = (MonkePlayerHandler) PlayerAPI.getPlayerHandler(player, MonkePlayerHandler.class);
+//        stats.addCraft();
+//
+//        return stack;
+//    }
 }

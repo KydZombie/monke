@@ -1,6 +1,6 @@
 package io.github.kydzombie.monke.mixin;
 
-import io.github.kydzombie.monke.item.MonkeHammerItem;
+import io.github.kydzombie.monke.item.tool.MonkeHammerItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

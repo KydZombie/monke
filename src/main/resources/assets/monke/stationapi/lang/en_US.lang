@@ -24,3 +24,5 @@ item.@.axe.name=Axe
 item.@.shovel.name=Shovel
 item.@.hoe.name=Hoe
 item.@.sword.name=Sword
+
+item.@.mining_speed_medal.name=Mining Speed Medal

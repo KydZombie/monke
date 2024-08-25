@@ -1,10 +1,12 @@
 package io.github.kydzombie.monke.block.entity;
 
+import blue.endless.jankson.annotation.Nullable;
+import com.matthewperiut.accessoryapi.api.helper.AccessoryAccess;
+import io.github.kydzombie.monke.custom.material.CreationMethod;
 import io.github.kydzombie.monke.event.MonkeMaterialRegistry;
 import io.github.kydzombie.monke.event.init.MonkeItems;
-import io.github.kydzombie.monke.item.MonkeToolItem;
 import io.github.kydzombie.monke.item.ToolPartItem;
-import io.github.kydzombie.monke.material.CreationMethod;
+import io.github.kydzombie.monke.item.tool.MonkeToolItem;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
@@ -13,6 +15,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 
 public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
+    public PlayerEntity currentPlayer = null;
     private ToolPartItem selectedPart = null;
     private ItemStack[] inventory = new ItemStack[3];
     private static final int OUTPUT_SLOT = 2;
@@ -45,7 +48,7 @@ public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
         }
     }
 
-    void onCraft(ItemStack crafted) {
+    public void onCraft(ItemStack crafted) {
         for (int i = 0; i < inventory.length - 1; i++) {
             ItemStack item = inventory[i];
             if (item == null) return;
@@ -74,7 +77,8 @@ public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
                     inventory[slot] = null;
                 }
             }
-            if (slot == OUTPUT_SLOT) onCraft(taken);
+            markDirty();
+            //if (slot == OUTPUT_SLOT) onCraft(taken);
 
             return taken;
         } else {
@@ -82,14 +86,12 @@ public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
         }
     }
 
-    // TODO: Make this less stupid
     @Override
     public void setStack(int slot, ItemStack stack) {
         this.inventory[slot] = stack;
         if (stack != null && stack.count > this.getMaxCountPerStack()) {
             stack.count = this.getMaxCountPerStack();
         }
-        if (slot == OUTPUT_SLOT) onCraft(stack);
     }
 
     @Override
@@ -141,29 +143,47 @@ public class SmithingAnvilBlockEntity extends BlockEntity implements Inventory {
         nbt.put("items", itemList);
     }
 
-    @Override
-    public void markDirty() {
-        if (selectedPart == null || inventory[0] == null || inventory[1] == null) {
+    private @Nullable ItemStack getOutput() {
+        if (currentPlayer == null || selectedPart == null || inventory[0] == null || inventory[1] == null) {
             inventory[OUTPUT_SLOT] = null;
-            return;
+            return null;
         }
 
         var material = MonkeMaterialRegistry.getMaterialFromCraftingMaterial(inventory[1]);
         if (material == null) {
             inventory[OUTPUT_SLOT] = null;
-            return;
+            return null;
         }
 
         if ((material.creationMethod == CreationMethod.SMITHING && inventory[0].getItem() != MonkeItems.hammer) ||
                 (material.creationMethod == CreationMethod.WOOD_WORKING && inventory[0].getItem() != MonkeItems.saw)) {
             inventory[OUTPUT_SLOT] = null;
-            return;
+            return null;
         }
 
         var outputItem = new ItemStack(selectedPart);
         ToolPartItem.setMonkeMaterial(outputItem, material);
 
-        inventory[OUTPUT_SLOT] = outputItem;
+        var nbt = outputItem.getStationNbt();
+        var monkeData = nbt.getCompound("monke_data");
+        var buffs = monkeData.getList("buffs");
+
+        if (AccessoryAccess.hasAccessory(currentPlayer, MonkeItems.miningSpeedMedal)) {
+            var buff = new NbtCompound();
+            buff.putString("type", "mining_speed");
+            buff.putFloat("speed", 1.2f);
+            buffs.add(buff);
+        }
+
+        monkeData.put("buffs", buffs);
+        nbt.put("monke_data", monkeData);
+
+        return outputItem;
+    }
+
+    @Override
+    public void markDirty() {
+        inventory[OUTPUT_SLOT] = getOutput();
 
         super.markDirty();
     }

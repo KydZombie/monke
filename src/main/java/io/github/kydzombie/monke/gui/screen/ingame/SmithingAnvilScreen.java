@@ -4,9 +4,11 @@ import io.github.kydzombie.monke.block.entity.SmithingAnvilBlockEntity;
 import io.github.kydzombie.monke.event.init.MonkeItems;
 import io.github.kydzombie.monke.gui.screen.SmithingAnvilScreenHandler;
 import io.github.kydzombie.monke.gui.widget.ToolPartButtonWidget;
+import io.github.kydzombie.monke.packet.ChooseSmithingOutputPacket;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.entity.player.PlayerInventory;
+import net.modificationstation.stationapi.api.network.packet.PacketHelper;
 import org.lwjgl.opengl.GL11;
 
 public class SmithingAnvilScreen extends HandledScreen {
@@ -17,6 +19,7 @@ public class SmithingAnvilScreen extends HandledScreen {
         this.smithingAnvilBlockEntity = smithingAnvilBlockEntity;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void init() {
         super.init();
@@ -33,6 +36,12 @@ public class SmithingAnvilScreen extends HandledScreen {
         buttons.add(new ToolPartButtonWidget(8, xOffset + 158, yOffset + 52, MonkeItems.sawBlade));
 
         smithingAnvilBlockEntity.setSelectedPart(null);
+
+//        for (var obj : buttons) {
+//            if (obj instanceof ToolPartButtonWidget button) {
+//                button.active = smithingAnvilBlockEntity.getSelectedPart() != button.part;
+//            }
+//        }
     }
 
     @Override
@@ -42,6 +51,9 @@ public class SmithingAnvilScreen extends HandledScreen {
             for (var otherButton : buttons) {
                 if (otherButton instanceof ToolPartButtonWidget otherPartButton) {
                     otherPartButton.active = partButton != otherPartButton;
+                    if (partButton == otherPartButton) {
+                        PacketHelper.send(new ChooseSmithingOutputPacket(partButton.partName));
+                    }
                 }
             }
         }

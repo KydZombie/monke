@@ -1,10 +1,10 @@
-package io.github.kydzombie.monke.item;
+package io.github.kydzombie.monke.item.tool;
 
 import io.github.kydzombie.monke.event.init.MonkeItems;
+import io.github.kydzombie.monke.item.ToolPartItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.tag.TagKey;

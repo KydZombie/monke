@@ -8,9 +8,9 @@ import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.nbt.NbtCompound;
 
 public class LooseSmithingStoneBlockEntity extends BlockEntity {
-    private static final String SETTING_KEY = "monke:setting_ticks";
-    private static final int SETTING_TIME = 2 * 60 * 20; // 2 minutes
-    private int settingTicks = 0;
+    private static final String SET_TIME_KEY = "monke:set_time";
+    private static final int SET_TIME = 2 * 60 * 20; // 2 minutes
+    private int setTimeTicks = 0;
 
     private boolean isFloating() {
         int blockId = world.getBlockId(x, y - 1, z);
@@ -42,24 +42,24 @@ public class LooseSmithingStoneBlockEntity extends BlockEntity {
                 world.getBlockId(x, y - 1, z) == Block.WATER.id || world.getBlockId(x, y - 1, z) == Block.FLOWING_WATER.id ||
                 world.getBlockId(x, y, z + 1) == Block.WATER.id || world.getBlockId(x, y, z + 1) == Block.FLOWING_WATER.id ||
                 world.getBlockId(x, y, z - 1) == Block.WATER.id || world.getBlockId(x, y, z - 1) == Block.FLOWING_WATER.id) {
-            settingTicks++;
-            if (settingTicks >= SETTING_TIME) {
+            setTimeTicks++;
+            if (setTimeTicks >= SET_TIME) {
                 world.setBlock(x, y, z, MonkeBlocks.smithingStone.id);
             }
         } else {
-            settingTicks = 0;
+            setTimeTicks = 0;
         }
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        settingTicks = nbt.getInt(SETTING_KEY);
+        setTimeTicks = nbt.getInt(SET_TIME_KEY);
     }
 
     @Override
     public void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
-        nbt.putInt(SETTING_KEY, settingTicks);
+        nbt.putInt(SET_TIME_KEY, setTimeTicks);
     }
 }

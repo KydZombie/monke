@@ -1,8 +1,8 @@
 package io.github.kydzombie.monke.event.init;
 
 import io.github.kydzombie.monke.event.MonkeMaterialRegistry;
-import io.github.kydzombie.monke.item.MonkeToolItem;
 import io.github.kydzombie.monke.item.ToolPartItem;
+import io.github.kydzombie.monke.item.tool.MonkeToolItem;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

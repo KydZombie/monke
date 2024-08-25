@@ -1,11 +1,11 @@
 package io.github.kydzombie.monke.event.init;
 
 import io.github.kydzombie.monke.Monke;
+import io.github.kydzombie.monke.custom.material.CreationMethod;
+import io.github.kydzombie.monke.custom.material.EnergizedWoodMaterial;
+import io.github.kydzombie.monke.custom.material.GoldMaterial;
+import io.github.kydzombie.monke.custom.material.MonkeMaterial;
 import io.github.kydzombie.monke.event.MonkeMaterialRegistryEvent;
-import io.github.kydzombie.monke.material.CreationMethod;
-import io.github.kydzombie.monke.material.EnergizedWoodMaterial;
-import io.github.kydzombie.monke.material.GoldMaterial;
-import io.github.kydzombie.monke.material.MonkeMaterial;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

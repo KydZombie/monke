@@ -1,8 +1,8 @@
-package io.github.kydzombie.monke.material;
+package io.github.kydzombie.monke.custom.material;
 
 import io.github.kydzombie.monke.Monke;
 import io.github.kydzombie.monke.event.MonkeMaterialRegistry;
-import io.github.kydzombie.monke.item.MonkeToolItem;
+import io.github.kydzombie.monke.item.tool.MonkeToolItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

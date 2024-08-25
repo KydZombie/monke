@@ -1,4 +1,4 @@
-package io.github.kydzombie.monke.material;
+package io.github.kydzombie.monke.custom.material;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterial;

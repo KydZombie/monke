@@ -1,8 +1,9 @@
-package io.github.kydzombie.monke.item;
+package io.github.kydzombie.monke.item.tool;
 
+import io.github.kydzombie.monke.custom.material.MonkeMaterial;
 import io.github.kydzombie.monke.event.MonkeMaterialRegistry;
 import io.github.kydzombie.monke.event.MonkeToolRegistry;
-import io.github.kydzombie.monke.material.MonkeMaterial;
+import io.github.kydzombie.monke.item.ToolPartItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -20,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MonkeToolItem extends TemplateToolItem implements CustomTooltipProvider {
     private static final ToolMaterial MISSING_MATERIAL =
@@ -105,9 +107,20 @@ public class MonkeToolItem extends TemplateToolItem implements CustomTooltipProv
     public String[] getTooltip(ItemStack stack, String originalTooltip) {
         ArrayList<String> tooltip = new ArrayList<>();
         tooltip.add(originalTooltip);
-        for (var part : parts) {
-            var material = getPartMaterial(stack, part);
+        var nbt = stack.getStationNbt();
+        var partsNbt = nbt.getCompound("monke_parts");
+        for (int i = 0; i < parts.length; i++) {
+            var part = parts[i];
+            var partNbt = partsNbt.getCompound(ItemRegistry.INSTANCE.getId(part.id).orElseThrow().toString());
+            var material = MonkeToolItem.getPartMaterialFromNbt(partNbt);
             tooltip.add(ItemRegistry.INSTANCE.getId(part.id).orElseThrow() + ": " + (material != null ? material.name : "none"));
+            var buffs = partNbt.getList("buffs");
+            for (int j = 0; j < buffs.size(); j++) {
+                var buffNbt = (NbtCompound) buffs.get(j);
+                if (Objects.equals(buffNbt.getString("type"), "mining_speed")) {
+                    tooltip.add("  Mining Speed: " + buffNbt.getFloat("speed"));
+                }
+            }
         }
         var durability = stack.getMaxDamage();
         tooltip.add("D: " + (durability - stack.getDamage()) + '/' + durability);

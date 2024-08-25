@@ -1,5 +1,6 @@
-package io.github.kydzombie.monke.item;
+package io.github.kydzombie.monke.item.tool;
 
+import io.github.kydzombie.monke.item.ToolPartItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

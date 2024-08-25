@@ -1,6 +1,7 @@
 package io.github.kydzombie.monke.gui.widget;
 
 import cyclops.data.tuple.Tuple2;
+import io.github.kydzombie.monke.event.MonkeToolRegistry;
 import io.github.kydzombie.monke.event.init.MonkeItems;
 import io.github.kydzombie.monke.item.ToolPartItem;
 import net.minecraft.client.Minecraft;
@@ -11,10 +12,16 @@ import java.util.HashMap;
 
 public class ToolPartButtonWidget extends ButtonWidget {
     public final ToolPartItem part;
+    public String partName;
 
     public ToolPartButtonWidget(int id, int x, int y, ToolPartItem part) {
         super(id, x, y, 20, 20, part.getTranslatedName());
         this.part = part;
+        MonkeToolRegistry.parts.forEach((name, toolPart) -> {
+            if (part == toolPart) {
+                partName = name;
+            }
+        });
     }
 
     private static final HashMap<ToolPartItem, Tuple2<Integer, Integer>> TOOL_PART_COORDS = new HashMap<>() {{

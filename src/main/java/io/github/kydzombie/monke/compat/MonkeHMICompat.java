@@ -23,14 +23,14 @@ public class MonkeHMICompat implements HMIItemListRefreshEvent {
         for (var tool : MonkeToolRegistry.tools) {
             Utils.hiddenItems.add(new ItemStack(tool));
         }
-        for (var part : MonkeToolRegistry.parts) {
+        for (var part : MonkeToolRegistry.parts.values()) {
             Utils.hiddenItems.add(new ItemStack(part));
         }
     }
 
     @Override
     public void refreshItemList(ArrayList<ItemStack> arrayList) {
-        for (var part : MonkeToolRegistry.parts) {
+        for (var part : MonkeToolRegistry.parts.values()) {
             for (var material : MonkeMaterialRegistry.getAllMaterials().values()) {
                 var newItem = new ItemStack(part);
                 ToolPartItem.setMonkeMaterial(newItem, material);
